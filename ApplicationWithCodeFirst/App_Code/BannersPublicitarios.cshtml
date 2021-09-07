@@ -1,0 +1,21 @@
+﻿@using ApplicationWithCodeFirst.Models;
+@helper RetornaDoisBannersMaisRecentes()
+{
+    var bd = new ApplicationWithCodeFirst.Models.BlogContext();
+    var banners = bd.BannersPublicitarios.
+    OrderByDescending(b => b.BannerID).Take(2);
+    <div style="width:100%; text-align:left; border:1px
+solid #efefef; padding:10px; display:inline-block;">
+        @foreach (var b in banners)
+        {
+            <div style="width:125px; height:125px;
+float:left; margin-right:10px;">
+                <a href="@b.LinkCampanha">
+                    <img src="~/Uploads/Banners/@b.BannerCampanha"
+                         title="@b.TituloCampanha" />
+                </a>
+            </div>
+        }
+    </div>
+}
+
